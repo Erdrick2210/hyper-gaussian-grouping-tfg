@@ -116,7 +116,7 @@ bash hyper.sh
 ```
 
 Això generarà les carpetes:
-- ```channels_undistorted/```: Les imatges desdistorsionades per canal en png.
+- ```channels_undistorted/```: Les imatges desdistorsionades per canal en ```.png```.
 - ```images/```: Les imatges desdistorsionades de la carpeta ```input/```.
 - ```sparse/```: Infomació necessària per inicialitzar les gaussianes (núvols de punts, poses de càmeres,...).
 
@@ -155,7 +155,40 @@ Això generarà en ```output/``` una carpeta amb el nom ```(DATASET_NAME)_(EXPER
 
 ## Avaluació
 
+Per avaluar un model entrenat hi ha dues opcions:
+- ```hyper_render.py```: S’encarrega de la fase de renderització i visualització dels resultats d’un model entrenat. A partir d’una iteració guardada, el script carrega les gaussianes 3D i el model neuronal associat, renderitza les vistes de les càmeres d’entrenament i test, i genera prediccions espectrals a partir dels embeddings latents obtinguts durant el renderitzat. Les sortides es guarden de forma organitzada, permetent la comparació directa amb les imatges ground truth.
 
+  Per fer el render hem de tenir en compte aquests paràmetres de ```hyper.sh```:
+  - ```RENDER```: Booleà que si s'estableix a ```true``` es crida a ```hyper_render.py```.
+  - ```MAX_ITERS```: Conté la iteració que es renderitzarà.
+  - ```METHOD_DIM_REDUCTION: Pot ser "t-sne" o "pca" si es vol visualitzar l'embedding, però també es pot fercarregant el ```point_cloud``` en un visualitzador.
+  - ```NUM_FRAMES```: Nombre de frames que es volen renderitzar, es pot augmentar si hi ha prous càmeres de test.
+
+  Per fer el render s'ha de fer la següent comanda establint ```RENDER=true```:
+
+  ``` 
+  bash hyper.sh
+  ```
+  
+- ```avaluacio.py```: Aquest script s’encarrega d’avaluar quantitativament i visualment els resultats d’un experiment comparant les prediccions del model amb el ground truth. Carrega les sortides generades (en format ```.npy```) per a diferents datasets, experiments i mides d’embedding, i calcula mètriques estàndard de qualitat d’imatge com PSNR, SSIM i LPIPS per als frames de test (i opcionalment de train), canal a canal. A més, permet comparar múltiples experiments (per exemple, diferents dimensions d’embedding) mitjançant gràfiques i genera visualitzacions qualitatives guardant imatges de predicció i ground truth per a un canal concret, facilitant així tant l’anàlisi numèrica com la inspecció visual dels resultats.
+
+  Cadascuna d'aquestes funcionalitats es pot utilitzar canviant la el booleà ```True```/```False``` a l'inici del bloc. En el script està comentada la funcionalitat de cada bloc.
+
+  Per executar-lo hem de tenir en compte les seguüents variables:
+  - ```dataset_solo``` i ```experiment```: Per calcular mètriques o visualització test/train per un dataset i experiment concrets.
+  - ```experiments```: Per calcular mètriques per un conjunt d'experiments o visualitzar una gràfica.
+  - ```iter```: Iteració a avaluar.
+  - ```channel```: Canal a avaluar. En el codi està comentat els rangs vàlids pels datasets utilitzats.
+  - ```datasets_config```: Diccionari que conté per cada nom de dataset en la carpeta output:
+    - Frames de test
+    - Frames de train
+    - Path del dataset en la carpeta ```data/```.
+
+  Per executar-lo s'ha de fer la comanda:
+
+  ```
+  python -i avaluacio.py
+  ```
 
 ---
 
