@@ -1,6 +1,6 @@
 # 3D Gaussian Splatting per a dades multiespectrals
 
-Aquesta implementació està basada en el repositori de Gaussian Grouping i amplia el model de **3D Gaussian Splatting (3DGS)** perquè pugui operar eficientment amb dades **multiespectrals i hiperespectrals**.  
+Aquesta implementació està basada en el repositori de [**Gaussian Grouping**](https://github.com/lkeab/gaussian-grouping) i amplia el model de [**3D Gaussian Splatting (3DGS)**](https://github.com/graphdeco-inria/gaussian-splatting) perquè pugui operar eficientment amb dades **multiespectrals i hiperespectrals**.  
 L'objectiu principal és millorar la qualitat de reconstrucció i el valor semàntic de les escenes generades, permetent extreure informació sobre els materials presents.
 
 ## Índex
@@ -91,6 +91,15 @@ La carpeta ```data/``` ja conté carpetes dels datasets utilitzats en aquest tre
 - **Spec-NeRF**: Consta d'una escena de 9 imatges i 20 canals cadascuna. Es pot descarregar des del seu github: https://github.com/CPREgroup/SpecNeRF-v2?tab=readme-ov-file.
 
   Es decarrega una carpeta anomenada ```RAW/``` que s'ha de situar dins de ```data/Spec-NeRF``` i executar el script ``` python spec-nerf.py ```.
+
+Taula resum de les escenes utilitzades i petita descripció:
+
+| Dataset                   | Imatges | Canals | Descripció |
+|----------------------------|---------|--------|------------|
+| MultimodalStudio - Birdhouse | 50      | 9      | Caseta d’ocells amb il·luminació halògena |
+| Basement                    | 50      | 9      | Escena amb fruites i MacBeth Colorchecker |
+| X-NeRF - Penguin            | 30      | 10     | Pingüins sobre cadira, sensors multimodals |
+| Spec-NeRF                   | 9       | 20     | Doraemon i MacBeth Colorchecker, dades reals i sintètiques |
 
 ---
 
@@ -194,4 +203,44 @@ Per avaluar un model entrenat hi ha dues opcions:
 
 ## Experiments i Resultats
 
+- Optimitzador: **Adam**, ```learning rate```: 0.0001, ```densify_grad_threshold```: 0.0002
+- Iteracions: 30.000 
+- Estratègia de densificació: cada 100 iteracions, des de la iteració 500 fins a la iteració 15000   
 
+### Models comparats
+
+| Experiment | Model | Depth | Dim. Hidden |
+|------------|-------|-------|-------------|
+| Ex1        | MLP   | 3     | dim_in      |
+| Ex2        | Conv  | 3     | dim_in      |
+| Ex3        | MLP   | 10    | dim_in      |
+| Ex4        | MLP   | 1     | dim_in      |
+| Ex5        | MLP   | 3     | 10*dim_in   |
+| Ex6        | Conv  | 3     | 10*dim_in   |
+
+### Resultats quantitatius
+
+| Dataset / Exp | PSNR ↑ | SSIM ↑ | LPIPS ↓ |
+|---------------|--------|--------|---------|
+| Birdhouse Ex5 | 23.61  | 0.847  | 0.296   |
+| Basement Ex5  | 27.02  | 0.897  | 0.358   |
+| Penguin Ex3   | 24.97  | 0.852  | 0.287   |
+| Spec-NeRF Ex3 | 26.38  | 0.873  | 0.344   |
+
+> Millors resultats destacats per dataset. La taula completa es troba en l'article.
+
+### Influència de la mida de l'embedding
+
+- Configuració de l'experiment 5
+- Iteracions: 70.000
+- Embeddings: `d = 8, 16, 24, 32` (millor resultats amb 24).
+
+>![Gràfica Embeddings](media/embedding_comparison_all_datasets.png)
+
+### Resultats qualitatius
+
+- Les reconstruccions són **coherents amb l’estructura global** de les escenes.  
+- Limitacions observades: fons difusos, textures especulars i zones amb poques vistes.  
+
+> ![Basement](media/basement_pred.png)
+> *Comparació entre imatge de groundtruth i predicció*
