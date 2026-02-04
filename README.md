@@ -11,6 +11,7 @@ L'objectiu principal és millorar la qualitat de reconstrucció i el valor semà
 - [Entrenament](#entrenament)
 - [Avaluació](#avaluació)
 - [Experiments i Resultats](#experiments-i-resultats)
+- [Visualització](#visualització)
 
 ---
 
@@ -262,3 +263,30 @@ Per avaluar un model entrenat hi ha dues opcions:
 - Les reconstruccions són **coherents amb l’estructura global** de les escenes.  
 - Limitacions observades: fons difusos, textures especulars i zones amb poques vistes.
 
+---
+
+## Visualització
+
+Per tal de poder visualitzar l'escena en 3D de les gaussianes colorejades a partir de l'embedding, es pot utilitzar el visualitzador web: https://superspl.at/editor.
+
+En aquest visualitzador es poden importar els ```point_cloud.ply``` generats durant l'entrenament i guardats en la carpeta ```output/```.
+
+Aquests es formen agafant els 3 primers canals de l'embedding. Tot i això, es pot modificar el script ```hyper_render.py``` per agafar altres canals o utilitzar mètodes de reducció de la dimensionalitat per reduir la mida de l'embedding a 3 canals simulant un RGB per substituir els ```spherical harmonics```.
+
+A continuació es mostren alguns dels ```.ply``` generats amb el dataset Basement:
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="media/visualitzador/first_channels.png" alt="Primers 3 canals" width="300"><br>
+      <b>Primers 3 canals</b>
+    </td>
+    <td align="center">
+      <img src="media/visualitzador/pca.png" alt="PCA" width="300"><br>
+      <b>PCA</b>
+    </td>
+    <td align="center">
+      <img src="media/visualitzador/t-sne.png" alt="T-SNE" width="300"><br>
+      <b>T-SNE</b>
+    </td>
+  </tr>
+</table>
