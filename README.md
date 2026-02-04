@@ -277,31 +277,79 @@ A continuació es mostren alguns dels ```.ply``` generats amb el dataset Basemen
 <table align="center">
   <tr>
     <td align="center">
-      <img src="media/visualitzador/first_channels.png" alt="Primers 3 canals" width="300"><br>
+      <img src="media/visualitzador/basement/first_channels.png" alt="Primers 3 canals Basement" width="300"><br>
       <b>Primers 3 canals</b>
     </td>
     <td align="center">
-      <img src="media/visualitzador/pca.png" alt="PCA" width="300"><br>
+      <img src="media/visualitzador/basement/pca.png" alt="PCA Basement" width="300"><br>
       <b>PCA</b>
     </td>
     <td align="center">
-      <img src="media/visualitzador/t-sne.png" alt="T-SNE" width="300"><br>
+      <img src="media/visualitzador/basement/t-sne.png" alt="T-SNE Basement" width="300"><br>
       <b>T-SNE</b>
     </td>
   </tr>
 
   <tr>
     <td align="center">
-      <img src="media/visualitzador/channel_repeated.png" alt="Canal repetit 3 cops" width="300"><br>
+      <img src="media/visualitzador/basement/channel_repeated.png" alt="Canal repetit 3 cops Basement" width="300"><br>
       <b>Canal repetit 3 cops</b>
     </td>
     <td align="center">
-      <img src="media/visualitzador/random_channels.png" alt="Canals aleatoris" width="300"><br>
+      <img src="media/visualitzador/basement/random_channels.png" alt="Canals aleatoris Basement" width="300"><br>
       <b>Canals aleatoris</b>
     </td>
     <td align="center">
-      <img src="media/visualitzador/random_channels2.png" alt="Canals aleatoris 2" width="300"><br>
+      <img src="media/visualitzador/basement/random_channels2.png" alt="Canals aleatoris 2 Basement" width="300"><br>
       <b>Canals aleatoris 2</b>
+    </td>
+  </tr>
+</table>
+
+També, hi ha exemples amb els altres datasets:
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="media/visualitzador/birdhouse/first_channels.png" alt="Primers 3 canals Birdhouse" width="300"><br>
+      <b>Primers 3 canals</b>
+    </td>
+    <td align="center">
+      <img src="media/visualitzador/birdhouse/pca.png" alt="PCA Birdhouse" width="300"><br>
+      <b>PCA</b>
+    </td>
+    <td align="center">
+      <img src="media/visualitzador/birdhouse/random_channels.png" alt="Canals aleatoris Birdhouse" width="300"><br>
+      <b>Canals aleatoris</b>
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center">
+      <img src="media/visualitzador/penguin/first_channels.png" alt="Primers 3 canals Penguin" width="300"><br>
+      <b>Primers 3 canals</b>
+    </td>
+    <td align="center">
+      <img src="media/visualitzador/penguin/pca.png" alt="PCA Penguin" width="300"><br>
+      <b>PCA</b>
+    </td>
+    <td align="center">
+      <img src="media/visualitzador/penguin/random_channels.png" alt="Canals aleatoris Penguin" width="300"><br>
+      <b>Canals aleatoris</b>
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center">
+      <img src="media/visualitzador/spec-nerf/first_channels.png" alt="Primers 3 canals Spec-NeRF" width="300"><br>
+      <b>Primers 3 canals</b>
+    </td>
+    <td align="center">
+      <img src="media/visualitzador/spec-nerf/pca.png" alt="PCA Spec-NeRF" width="300"><br>
+      <b>PCA</b>
+    </td>
+    <td align="center">
+      <img src="media/visualitzador/spec-nerf/random_channels.png" alt="Canals aleatoris Spec-NeRF" width="300"><br>
+      <b>Canals aleatoris</b>
     </td>
   </tr>
 </table>
