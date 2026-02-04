@@ -289,4 +289,19 @@ A continuació es mostren alguns dels ```.ply``` generats amb el dataset Basemen
       <b>T-SNE</b>
     </td>
   </tr>
+
+  <tr>
+    <td align="center">
+      <img src="media/visualitzador/channel_repeated.png" alt="Canal repetit 3 cops" width="300"><br>
+      <b>Canal repetit 3 cops</b>
+    </td>
+    <td align="center">
+      <img src="media/visualitzador/random_channels.png" alt="Canals aleatoris" width="300"><br>
+      <b>Canals aleatoris</b>
+    </td>
+    <td align="center">
+      <img src="media/visualitzador/random_channels2.png" alt="Canals aleatoris 2" width="300"><br>
+      <b>Canals aleatoris 2</b>
+    </td>
+  </tr>
 </table>
