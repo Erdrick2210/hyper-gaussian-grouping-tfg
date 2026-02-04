@@ -248,6 +248,8 @@ Per avaluar un model entrenat hi ha dues opcions:
 
 ### Resultats qualitatius
 
+Les imatges de predicció següents s'han generat utilitzat el script ```avaluacio.py``` pel canal 0. En la carpeta [media/test_visualization/](media/test_visualization) hi ha més comparatives amb les imatges de test amb altres escenes de MultimodalStudio.
+
 - ### MultimodalStudio - Birdhouse
 <img src="media/comparatives/comparativa_birdhouse.png" alt="Comparativa Birdhouse" width="600">
 
