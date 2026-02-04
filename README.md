@@ -24,27 +24,25 @@ L'objectiu principal és millorar la qualitat de reconstrucció i el valor semà
 
 ## Estructura del projecte
 
-```
-hyper-gaussian-grouping-tfg/
-  arguments/ Definició de paràmetres d'entrenament per optimització i del model.
-  config/ Conté paràmetres d'entrenament.
-  data/ Carpeta on s'ubiquen els datasets, conté codi per preparar-los.
-  docs/ Documentació d'instal·lació.
-  gaussian_renderer/ Codi relacionat amb la representació 3D de les gaussianes i renderitzat diferencial.
-  media/ Imatges i resultats de mostra.
-  scene/ Fitxers i utilitats per fer servir escenes 3D, configuració de càmeres, dades d'entrenament, etc.
-  submodules/ Conté codi CUDA per a la rasterització de les gaussianes.
-  utils/ Funcions comunes reutilitzades en diverses parts del codi.
+[hyper-gaussian-grouping-tfg/](hyper-gaussian-grouping-tfg/)
+- [arguments/](arguments/): Definició de paràmetres d'entrenament per optimització i del model.
+- [config/](config/): Conté paràmetres d'entrenament.
+- [data/](data/): Carpeta on s'ubiquen els datasets, conté codi per preparar-los.
+- [docs/](docs/): Documentació d'instal·lació.
+- [gaussian_renderer/](gaussian_renderer/): Codi relacionat amb la representació 3D de les gaussianes i renderitzat diferencial.
+- [media/](media/): Imatges i resultats de mostra.
+- [scene/](scene/): Fitxers i utilitats per fer servir escenes 3D, configuració de càmeres, dades d'entrenament, etc.
+- [submodules/](submodules/): Conté codi CUDA per a la rasterització de les gaussianes.
+- [utils/](utils/): Funcions comunes reutilitzades en diverses parts del codi.
   *.py Scripts python
-```
 
 ### Scripts de nivell arrel
 
 - ```avaluacio.py```: Codi per avaluar els models entrenats. Serveix per mostrar imatges comparatives de groundtruth, train i test; mesurar mètriques (PSNR, SSIM i LPIPS) i mostrar gràfiques.
 - ```convert.py```: S'utilitza per executar el COLMAP amb els arguments necessaris per deixar els datasets llestos per l'entrenament.
-- ```get_data.py```: Script auxiliar molt senzill per mostrar els punts inicials i gaussianes que conté un point_cloud.ply.
+- ```get_data.py```: Script auxiliar molt senzill per mostrar els punts inicials i gaussianes que conté un ```point_cloud.ply```.
 - ```hyper.py```: Conté les definicions dels models utilitzats (MLP, Conv) per predir el color a partir dels embeddings renderitzats i una funció per calcular una part de la Loss (L1).
-- ```hyper.sh```: Script bash que s'encarrega d'executar els scripts importants del projecte per generar el núvol de punts inicial i les poses de les càmeres, entrenar i renderitzar.
+- ```hyper.sh```: Script bash que s'encarrega d'executar els scripts importants del projecte per generar el núvol de punts inicial i les poses de les càmeres (```convert.py```), entrenar (```hyper_train.py```) i renderitzar (```hyper_render.py```).
 - ```hyper_render.py```: Conté el codi per carregar una iteració del model i poder renderitzar les imatges de test.
 - ```hyper_train.py```: Codi per l'entrenament del model.
 - ```metrics.py```: Mètriques per avaluar els resultats.
@@ -271,7 +269,7 @@ Les imatges de predicció següents s'han generat utilitzat el script ```avaluac
 
 Per tal de poder visualitzar l'escena en 3D de les gaussianes colorejades a partir de l'embedding, es pot utilitzar el visualitzador web: https://superspl.at/editor.
 
-En aquest visualitzador es poden importar els ```point_cloud.ply``` generats durant l'entrenament i guardats en la carpeta ```output/```.
+En aquest visualitzador es poden importar els ```point_cloud.ply``` generats durant l'entrenament i guardats en la carpeta [output/](output/).
 
 Aquests es formen agafant els 3 primers canals de l'embedding. Tot i això, es pot modificar el script ```hyper_render.py``` per agafar altres canals o utilitzar mètodes de reducció de la dimensionalitat per reduir la mida de l'embedding a 3 canals simulant un RGB per substituir els ```spherical harmonics```.
 
