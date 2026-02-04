@@ -73,22 +73,30 @@ La carpeta ```data/``` ja conté carpetes dels datasets utilitzats en aquest tre
 
 - **MultimodalStudio**: Consta de 32 escenes amb 50 imatges i 9 canals cadascuna. Aquest es pot descarregar en la seva pàgina en el següent enllaç: https://lttm.github.io/MultimodalStudio/pages/dataset.html.
 
+  <img src="media/datasets/birdhouse_RGB.png" alt="Birdhouse" width="400">
+
   Hi ha dues opcions, descarregar únicament l'escena Birdhouse (6 GB) o descarregar el dataset complet (128 GB). En qualsevol dels 2 casos, la carpeta descarregada s'ha de situar en la carpeta ```data/multi-modal-studio/```. Allà hi ha un script ```mms.py``` per preparar el datatset. Només s'han de modificar les variables ```path_input``` i ```path_output``` en funció de l'escena que s'utilitza. De manera predeterminada està posada l'escena Birdhouse.
 
   Llavors s'excuta: ``` python mms.py ```
 
 - **Basement**: Consta d'una escena de 50 imatges i 9 canals cadascuna. Aquest dataset ha estat proveït per Arnau Marcos Almansa.
 
+  <img src="media/datasets/basement_RGB.png" alt="Basement" width="400">
+
   Per preparar-lo s'ha de posar dins de la carpeta ```data/basement``` i llavors executar ``` python basememt.py ```.
 
-  Si les imatges són molt grans, es pot aprofitar per fer el COLMAP, però després per l'entrenament potser que no hi càpiguen en la GPU. Llavors es pot executar ``` python reshape.py ```.
+  Si les imatges són molt grans, es pot aprofitar per fer el COLMAP, però després per l'entrenament pot ser que no hi càpiguen en la GPU. Llavors es pot executar ``` python reshape.py ```.
   Al final d'aquest script es pot canviar la variable ```route``` per incloure el path de les imatges que es volen redimensionar. En aquest cas: ```data/basement/images```.
 
 - **X-NeRF**: Consta d'una escena de 30 imatges i 10 canals cadascuna. Aquest es pot descarregar en el següent enllaç: https://amsacta.unibo.it/id/eprint/7142/.
 
+  <img src="media/datasets/penguin_RGB.png" alt="Penguin" width="400">
+
   Un cop descarregat, s'ha de crear la carpeta ```penguin/``` i ubicar-la a ```data/xnerf```. Dins de ```penguin/``` s'ha de co·locar l'arxiu descarregat ```ms_imgs.npy``` i llavors executar ``` python xnerf.py ```.
 
 - **Spec-NeRF**: Consta d'una escena de 9 imatges i 20 canals cadascuna. Es pot descarregar des del seu github: https://github.com/CPREgroup/SpecNeRF-v2?tab=readme-ov-file.
+
+  <img src="media/datasets/Spec-NeRF_RGB.png" alt="Spec-NeRF" width="400">
 
   Es decarrega una carpeta anomenada ```RAW/``` que s'ha de situar dins de ```data/Spec-NeRF``` i executar el script ``` python spec-nerf.py ```.
 
@@ -239,8 +247,18 @@ Per avaluar un model entrenat hi ha dues opcions:
 
 ### Resultats qualitatius
 
-- Les reconstruccions són **coherents amb l’estructura global** de les escenes.  
-- Limitacions observades: fons difusos, textures especulars i zones amb poques vistes.  
+- ### MultimodalStudio - Birdhouse
+<img src="media/comparatives/comparativa_birdhouse.png" alt="Comparativa Birdhouse" width="600">
 
-> ![Basement](media/basement_pred.png)
-> *Comparació entre imatge de groundtruth i predicció*
+- ### Basement
+<img src="media/comparatives/comparativa_basement.png" alt="Comparativa Basement" width="600">
+
+- ### X-NeRF - Penguin
+<img src="media/comparatives/comparativa_x-nerf.png" alt="Comparativa Penguin" width="600">
+
+- ### Spec-NeRF
+<img src="media/comparatives/comparativa_spec-nerf.png" alt="Comparativa Spec-NeRF" width="600">
+
+- Les reconstruccions són **coherents amb l’estructura global** de les escenes.  
+- Limitacions observades: fons difusos, textures especulars i zones amb poques vistes.
+
